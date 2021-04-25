@@ -8,27 +8,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.api.cidade.exception.DefaultApiException;
-import com.api.cidade.model.CidadeModel;
-import com.api.cidade.repository.CidadeRepository;
+import com.api.cidade.model.PaisModel;
+import com.api.cidade.repository.PaisRepository;
 
 @Service
-public class CidadeService implements ICidadeService {
+public class PaisService implements IPaisService {
 
 	@Autowired
-	private CidadeRepository cidadeRepository;
+	private PaisRepository paisRepository;
 
 	@Override
-	public List<CidadeModel> findAll() {
+	public List<PaisModel> findAll() {
 		try {
-			return (List<CidadeModel>) cidadeRepository.findAll();
+			return (List<PaisModel>) paisRepository.findAll();
 		} catch (Exception e) {
 			throw new DefaultApiException(e.getMessage(), e, HttpStatus.SERVICE_UNAVAILABLE);
 		}
 	}
 
 	@Override
-	public CidadeModel findById(Long id) {
-		Optional<CidadeModel> obj = cidadeRepository.findById(id);
+	public PaisModel findById(Long id) {
+		Optional<PaisModel> obj = paisRepository.findById(id);
 		return obj.get();
 	}
 }

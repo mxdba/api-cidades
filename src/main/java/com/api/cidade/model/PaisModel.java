@@ -8,58 +8,63 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cidade")
+@Table(name = "pais")
 
-public class CidadeModel {
-	
+public class PaisModel {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
-	
-	@Column(name = "ibge")
-	private long ibge;
-	
+
 	@Column(name = "nome")
 	private String nome;
-	
-	public CidadeModel() {
-		
+
+	@Column(name = "sigla")
+	private String sigla;
+
+	public PaisModel() {
+
 	}
-	
-	public CidadeModel(long id, long ibge, String nome) {
+
+	public PaisModel(long id, String nome, String sigla) {
 		super();
 		this.id = id;
-		this.ibge = ibge;
 		this.nome = nome;
+		this.sigla = sigla;
 	}
 
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	public long getIbge() {
-		return ibge;
-	}
-	public void setIbge(long ibge) {
-		this.ibge = ibge;
-	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (ibge ^ (ibge >>> 32));
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((sigla == null) ? 0 : sigla.hashCode());
 		return result;
 	}
 
@@ -71,9 +76,7 @@ public class CidadeModel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CidadeModel other = (CidadeModel) obj;
-		if (ibge != other.ibge)
-			return false;
+		PaisModel other = (PaisModel) obj;
 		if (id != other.id)
 			return false;
 		if (nome == null) {
@@ -81,8 +84,12 @@ public class CidadeModel {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
+		if (sigla == null) {
+			if (other.sigla != null)
+				return false;
+		} else if (!sigla.equals(other.sigla))
+			return false;
 		return true;
 	}
-
 
 }

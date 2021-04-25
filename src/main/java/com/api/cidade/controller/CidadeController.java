@@ -3,23 +3,48 @@ package com.api.cidade.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.cidade.model.CidadeModel;
-import com.api.cidade.repository.CidadeRepository;
+import com.api.cidade.model.PaisModel;
+import com.api.cidade.service.ICidadeService;
+import com.api.cidade.service.IPaisService;
 
 @RestController
 @RequestMapping("/cidades")
 public class CidadeController {
-	
+
 	@Autowired
-	private CidadeRepository cidadeRepository;
+	private ICidadeService cidadeService;
 	
-	
+	@Autowired 
+	private IPaisService paisService;
+
 	@GetMapping
-	public List<CidadeModel> listar(){
-		return cidadeRepository.findAll();
+	public ResponseEntity<List<CidadeModel>> FinAll() {
+		List<CidadeModel> list = cidadeService.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<CidadeModel> findByid(@PathVariable Long id) {
+		CidadeModel cidadeModel = cidadeService.findById(id);
+		return ResponseEntity.ok().body(cidadeModel);
+	}
+	
+	@GetMapping("/pais")
+	public ResponseEntity<List<PaisModel>> FindAll() {
+		List<PaisModel> list = paisService.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+
+	@GetMapping("/pais/{id}")
+	public ResponseEntity<PaisModel> findByPaisId(@PathVariable Long id) {
+		PaisModel paisModel = paisService.findById(id);
+		return ResponseEntity.ok().body(paisModel);
 	}
 }
