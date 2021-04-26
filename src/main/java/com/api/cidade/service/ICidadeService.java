@@ -9,4 +9,8 @@ public interface ICidadeService {
 	List<CidadeModel> findAll();
 
 	CidadeModel findById(Long id);
+	
+	CidadeModel insert(CidadeModel obj);
+	
+	void delete(Long id);
 }
