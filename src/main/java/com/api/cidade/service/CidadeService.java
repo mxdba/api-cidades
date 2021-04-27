@@ -31,16 +31,16 @@ public class CidadeService implements ICidadeService {
 		Optional<CidadeModel> obj = cidadeRepository.findById(id);
 		return obj.get();
 	}
-	
+
 	@Override
 	public CidadeModel insert(CidadeModel obj) {
-	   return cidadeRepository.save(obj);
+		return cidadeRepository.save(obj);
 	}
-	
+
 	@Override
 	public void delete(Long id) {
 		cidadeRepository.deleteById(id);
-		
+
 	}
-	
+
 }
