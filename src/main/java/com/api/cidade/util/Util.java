@@ -3,6 +3,7 @@ package com.api.cidade.util;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Util {
 	
 	public static final <T>List<T> castCollection(List<?> srcList, Class<T> clas){
